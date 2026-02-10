@@ -4,9 +4,10 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 type HeroSectionProps = {
   copy: Pick<LandingCopy, "nav" | "hero">;
+  language?: "en" | "de" | "pl" | "es";
 };
 
-export default function HeroSection({ copy }: HeroSectionProps) {
+export default function HeroSection({ copy, language }: HeroSectionProps) {
   return (
     <section className="section hero" aria-labelledby="hero-title">
       <div className="hero-bg" aria-hidden="true">
@@ -24,7 +25,7 @@ export default function HeroSection({ copy }: HeroSectionProps) {
               {copy.nav.login}
             </button>
           </div>
-          <LanguageSwitcher />
+          <LanguageSwitcher currentLang={language} />
         </div>
       </nav>
       <div className="hero-content font-roboto">

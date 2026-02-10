@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import {
   defaultLanguage,
   languageLabels,
-  supportedLanguages
+  supportedLanguages,
+  type Language
 } from "./content";
 
 const cookieName = "sampadai_lang";
@@ -33,22 +33,14 @@ function buildPath(pathname: string, nextLang: string) {
   return `/${segments.join("/")}`;
 }
 
-export default function LanguageSwitcher() {
-  const pathname = usePathname();
+type LanguageSwitcherProps = {
+  currentLang?: Language;
+};
+
+export default function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const currentLang = useMemo(() => {
-    const segments = pathname.split("/").filter(Boolean);
-    const candidate = segments[0];
-    if (
-      candidate &&
-      supportedLanguages.includes(candidate as (typeof supportedLanguages)[number])
-    ) {
-      return candidate;
-    }
-    return defaultLanguage;
-  }, [pathname]);
+  const activeLang = currentLang || defaultLanguage;
 
   useEffect(() => {
     if (!open) {
@@ -69,13 +61,19 @@ export default function LanguageSwitcher() {
   }, [open]);
 
   const handleSelect = (lang: string) => {
-    if (lang === currentLang) {
+    if (lang === activeLang) {
       setOpen(false);
       return;
     }
 
     document.cookie = `${cookieName}=${lang}; path=/; max-age=31536000; samesite=lax`;
-    window.location.assign(buildPath(pathname, lang));
+    const nextPath =
+      typeof window === "undefined"
+        ? `/${lang}`
+        : buildPath(window.location.pathname, lang);
+    if (typeof window !== "undefined") {
+      window.location.assign(nextPath);
+    }
     setOpen(false);
   };
 
@@ -87,10 +85,10 @@ export default function LanguageSwitcher() {
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={languageAriaLabels[currentLang] || languageAriaLabels.en}
+        aria-label={languageAriaLabels[activeLang] || languageAriaLabels.en}
       >
         <span className="language-label">
-          {languageLabels[currentLang as keyof typeof languageLabels]}
+          {languageLabels[activeLang]}
         </span>
         <span className={`language-caret ${open ? "open" : ""}`}>v</span>
       </button>
@@ -100,8 +98,8 @@ export default function LanguageSwitcher() {
             key={lang}
             type="button"
             role="option"
-            aria-selected={lang === currentLang}
-            className={`language-option ${lang === currentLang ? "active" : ""}`}
+            aria-selected={lang === activeLang}
+            className={`language-option ${lang === activeLang ? "active" : ""}`}
             onClick={() => handleSelect(lang)}
           >
             {languageLabels[lang]}

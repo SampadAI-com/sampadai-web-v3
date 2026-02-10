@@ -39,7 +39,7 @@ export default function HomePage({ params }: PageProps) {
 
   return (
     <main className="landing">
-      <HeroSection copy={copy} />
+      <HeroSection copy={copy} language={params.lang} />
       <PhoneStackSection />
       <RewardsSection copy={copy.rewards} />
       <MoneyMattersSection copy={copy.money} />

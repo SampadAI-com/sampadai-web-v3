@@ -117,12 +117,15 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  z-index: 0;
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-bg img {
@@ -144,8 +147,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 2;
+  z-index: 6;
   padding: 0 24px;
+  pointer-events: auto;
 }
 
 .logo-mark {
@@ -223,7 +227,7 @@ button {
   pointer-events: none;
   transform: translateY(-6px);
   transition: all 0.2s ease;
-  z-index: 3;
+  z-index: 10;
 }
 
 .language-menu.open {
@@ -260,7 +264,7 @@ button {
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: min(100%, 900px);
   padding: 0 24px;
 }

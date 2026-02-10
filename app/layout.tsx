@@ -37,7 +37,7 @@ export default function RootLayout({
     : defaultLanguage;
 
   return (
-    <html lang={lang}>
+    <html lang={lang} translate="no">
       <body className={`${inter.variable} ${roboto.variable}`}>{children}</body>
     </html>
   );
