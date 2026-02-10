@@ -841,6 +841,12 @@ button {
     gap: 16px;
   }
 
+  .language-switcher {
+    position: absolute;
+    top: 0;
+    right: 24px;
+  }
+
   .nav-links {
     gap: 24px;
     flex-wrap: wrap;
@@ -852,11 +858,35 @@ button {
   }
 
   .phone-stack-inner {
-    height: 600px;
+    height: 520px;
   }
 
   .phone-card {
     width: 36%;
+  }
+
+  .phone-card.placeholder {
+    height: 520px;
+  }
+
+  .phone-a {
+    left: 0%;
+  }
+
+  .phone-b {
+    left: 16%;
+  }
+
+  .phone-c {
+    left: 32%;
+  }
+
+  .phone-d {
+    left: 48%;
+  }
+
+  .phone-e {
+    left: 64%;
   }
 
   .experience-inner {
@@ -888,11 +918,35 @@ button {
   }
 
   .phone-stack-inner {
-    height: 520px;
+    height: 440px;
   }
 
   .phone-card {
     width: 44%;
+  }
+
+  .phone-card.placeholder {
+    height: 420px;
+  }
+
+  .phone-a {
+    left: 0%;
+  }
+
+  .phone-b {
+    left: 14%;
+  }
+
+  .phone-c {
+    left: 28%;
+  }
+
+  .phone-d {
+    left: 42%;
+  }
+
+  .phone-e {
+    left: 56%;
   }
 
   .cta-button {
