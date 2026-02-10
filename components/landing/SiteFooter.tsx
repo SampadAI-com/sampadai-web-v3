@@ -42,9 +42,6 @@ export default function SiteFooter() {
       </div>
       <div className="footer-bottom font-inter">
         <span>copyright (c) 2026 SampadAI Pvt Ltd.</span>
-        <span className="footer-legal">
-          privacy policy terms and conditions returns and refund
-        </span>
       </div>
     </footer>
   );
