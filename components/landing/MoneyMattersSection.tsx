@@ -1,6 +1,11 @@
 import { assets } from "./assets";
+import type { LandingCopy } from "./content";
 
-export default function MoneyMattersSection() {
+type MoneyMattersSectionProps = {
+  copy: LandingCopy["money"];
+};
+
+export default function MoneyMattersSection({ copy }: MoneyMattersSectionProps) {
   return (
     <section className="section money-matters" aria-labelledby="money-title">
       <div className="section-bg" aria-hidden="true">
@@ -9,16 +14,12 @@ export default function MoneyMattersSection() {
       </div>
       <div className="section-inner font-roboto">
         <h2 id="money-title" className="section-title money-title">
-          we take your money matters seriously.
+          {copy.title}
         </h2>
-        <p className="section-subtitle money-subtitle">so that you don't have to.</p>
-        <p className="section-body money-body">
-          never miss a due date with reminders to help you pay your bills on time,
-          instant settlements mean you never wait for your payments to go through
-          and statement analysis lets you know where your money goes, always.
-        </p>
+        <p className="section-subtitle money-subtitle">{copy.subtitle}</p>
+        <p className="section-body money-body">{copy.body}</p>
         <button type="button" className="cta-button">
-          Experience the upgrade
+          {copy.cta}
         </button>
       </div>
     </section>

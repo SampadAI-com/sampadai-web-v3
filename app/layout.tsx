@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
+import { cookies, headers } from "next/headers";
+import { defaultLanguage, supportedLanguages } from "@/components/landing/content";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,8 +27,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const headerLang = headers().get("x-sampadai-lang");
+  const cookieLang = cookies().get("sampadai_lang")?.value;
+  const candidate = headerLang || cookieLang;
+  const lang = supportedLanguages.includes(
+    candidate as (typeof supportedLanguages)[number]
+  )
+    ? candidate
+    : defaultLanguage;
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={`${inter.variable} ${roboto.variable}`}>{children}</body>
     </html>
   );

@@ -1,8 +1,13 @@
 import { assets } from "./assets";
+import type { LandingCopy } from "./content";
 
-export default function RatingsSection() {
+type RatingsSectionProps = {
+  copy: LandingCopy["ratings"];
+};
+
+export default function RatingsSection({ copy }: RatingsSectionProps) {
   return (
-    <section className="section ratings" aria-label="App ratings">
+    <section className="section ratings" aria-label={copy.ariaLabel}>
       <div className="section-bg" aria-hidden="true">
         <img src={assets.ratingsBg} alt="" />
       </div>
@@ -12,23 +17,19 @@ export default function RatingsSection() {
             <div className="rating-head">
               <div className="rating-score">
                 <span className="rating-number">4.8</span>
-                <span className="rating-store">app store</span>
+                <span className="rating-store">{copy.storeLabel}</span>
               </div>
               <button className="store-button" type="button">
                 <img src={assets.appleLogo} alt="" />
-                <span>Download the app</span>
+                <span>{copy.button}</span>
               </button>
             </div>
             <img className="rating-stars" src={assets.ratingIos} alt="" />
           </div>
         </div>
         <div className="testimonial">
-          <p className="testimonial-quote">
-            "in love! such a seamless user experience, smooth as freshly waxed
-            pair of legs! very intuitive and easy to use application. good job
-            people, good job."
-          </p>
-          <p className="testimonial-name">emilia llosa</p>
+          <p className="testimonial-quote">{copy.testimonialQuote}</p>
+          <p className="testimonial-name">{copy.testimonialName}</p>
         </div>
         <div className="testimonial-dots" aria-hidden="true">
           <span />

@@ -1,38 +1,19 @@
 import { assets } from "./assets";
+import type { LandingCopy } from "./content";
 
-const features = [
-  {
-    title: "we've got your back.",
-    body:
-      "stop reacting to your finances and start leading them. Receive intelligent, category-based breakdowns of your monthly spends and real-time alerts on your credit limits.",
-    withDevice: true
-  },
-  {
-    title: "begin your winning streak.",
-    body:
-      "your journey to financial freedom should be as rewarding as the destination."
-  },
-  {
-    title: "for your eclectic taste.",
-    body:
-      "step into a member-only space featuring a handpicked selection of products and experiences designed to align with your lifestyle."
-  },
-  {
-    title: "more cash in your pockets.",
-    body:
-      "stop jumping between apps to stay on top of your life. With SampadAI Auto-Pilot"
-  }
-];
+type ExperienceSectionProps = {
+  copy: LandingCopy["experience"];
+};
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ copy }: ExperienceSectionProps) {
   return (
-    <section className="section experience" aria-label="SampadAI experiences">
+    <section className="section experience" aria-label={copy.ariaLabel}>
       <div className="section-bg" aria-hidden="true">
         <div className="section-bg-overlay dark" />
         <img src={assets.heroBg} alt="" />
       </div>
       <div className="experience-inner font-roboto">
-        {features.map((feature, index) => (
+        {copy.features.map((feature, index) => (
           <div
             key={feature.title}
             className={`feature-block ${feature.withDevice ? "with-device" : ""}`}

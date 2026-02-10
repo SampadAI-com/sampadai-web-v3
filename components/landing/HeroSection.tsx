@@ -1,6 +1,12 @@
 import { assets } from "./assets";
+import type { LandingCopy } from "./content";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  copy: Pick<LandingCopy, "nav" | "hero">;
+};
+
+export default function HeroSection({ copy }: HeroSectionProps) {
   return (
     <section className="section hero" aria-labelledby="hero-title">
       <div className="hero-bg" aria-hidden="true">
@@ -9,24 +15,25 @@ export default function HeroSection() {
       </div>
       <nav className="hero-nav">
         <img className="logo-mark" src={assets.logoMark} alt="SampadAI" />
-        <div className="nav-links">
-          <button type="button" className="nav-link">
-            signup
-          </button>
-          <button type="button" className="nav-link">
-            login
-          </button>
+        <div className="nav-right">
+          <div className="nav-links">
+            <button type="button" className="nav-link">
+              {copy.nav.signup}
+            </button>
+            <button type="button" className="nav-link">
+              {copy.nav.login}
+            </button>
+          </div>
+          <LanguageSwitcher />
         </div>
       </nav>
       <div className="hero-content font-roboto">
         <h1 id="hero-title" className="hero-title">
-          crafted for the woman in command
+          {copy.hero.title}
         </h1>
-        <p className="hero-subtitle">
-          join the inner circle of women winning daily.
-        </p>
+        <p className="hero-subtitle">{copy.hero.subtitle}</p>
         <button type="button" className="cta-button cta-hero">
-          Download SampadAI
+          {copy.hero.cta}
         </button>
       </div>
     </section>

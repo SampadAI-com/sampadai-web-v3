@@ -168,6 +168,95 @@ button {
   align-items: center;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.language-switcher {
+  position: relative;
+}
+
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 15, 15, 0.6);
+  color: var(--white);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(12px);
+}
+
+.language-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(30, 30, 30, 0.7);
+}
+
+.language-caret {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.language-caret.open {
+  transform: rotate(180deg);
+}
+
+.language-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 120px;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(15, 15, 15, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: all 0.2s ease;
+  z-index: 3;
+}
+
+.language-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.language-option {
+  display: block;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.language-option:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.language-option.active {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 
 .hero-content {
   position: relative;
@@ -739,6 +828,11 @@ button {
 
 @media (max-width: 768px) {
   .hero-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav-right {
     flex-direction: column;
     gap: 16px;
   }

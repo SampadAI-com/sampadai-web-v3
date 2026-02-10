@@ -1,10 +1,15 @@
-import { assets, footerColumns, footerFaq, footerMetaLines } from "./assets";
+import { assets } from "./assets";
+import type { LandingCopy } from "./content";
 
-export default function SiteFooter() {
+type SiteFooterProps = {
+  copy: LandingCopy["footer"];
+};
+
+export default function SiteFooter({ copy }: SiteFooterProps) {
   return (
     <footer className="section site-footer">
       <div className="footer-faq font-inter">
-        {footerFaq.map((item) => (
+        {copy.faq.map((item) => (
           <div key={item.title} className="footer-faq-item">
             <h3>{item.title}</h3>
             <p className="footer-body-text">{item.body}</p>
@@ -13,7 +18,7 @@ export default function SiteFooter() {
       </div>
       <div className="footer-divider" />
       <div className="footer-meta font-inter">
-        {footerMetaLines.map((line) => (
+        {copy.metaLines.map((line) => (
           <p key={line}>{line}</p>
         ))}
       </div>
@@ -21,14 +26,11 @@ export default function SiteFooter() {
         <div className="footer-brand">
           <img className="brand-logo" src={assets.brandLogoHorizontal} alt="SampadAI" />
           <img src={assets.securityLogos} alt="Security certifications" />
-          <p className="footer-brand-title">complete security. no asterisks.</p>
-          <p className="footer-brand-body">
-            SampadAI encrypts all data and transactions to ensure a completely
-            secure experience for our members.
-          </p>
+          <p className="footer-brand-title">{copy.brandTitle}</p>
+          <p className="footer-brand-body">{copy.brandBody}</p>
         </div>
         <div className="footer-links">
-          {footerColumns.map((column) => (
+          {copy.columns.map((column) => (
             <div key={column.title} className="footer-column">
               <h4>{column.title}</h4>
               <ul>
@@ -41,7 +43,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="footer-bottom font-inter">
-        <span>copyright (c) 2026 SampadAI Pvt Ltd.</span>
+        <span>{copy.copyright}</span>
       </div>
     </footer>
   );
